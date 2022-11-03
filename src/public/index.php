@@ -1,14 +1,12 @@
 <?php
-declare(strict_types=1);
-require '../Transaction.php';
 
-$transaction1 = (new Transaction(100, 'hi ...'))
-    ->addTax(8)
-    ->applyDiscount(8);
+require __DIR__ . '/../vendor/autoload.php';
 
-$transaction2 = (new Transaction(100, 'hi ...'))
-    ->addTax(8)
-    ->applyDiscount(15);
+use App\Enums\Status;
+use App\PaymentGateway\Paddle\Transaction;
 
+$transaction = new Transaction();
 
-var_dump($transaction1->getAmount(),$transaction2->getAmount());
+$transaction->setStatus(Status::PAID);
+
+var_dump($transaction);
